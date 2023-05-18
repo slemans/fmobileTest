@@ -39,7 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		85BE7FE829C318DB00C94F8D /* shopDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shopDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85BE7FE829C318DB00C94F8D /* DemoMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85BE7FEB29C318DB00C94F8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85BE7FF729C318DC00C94F8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85BE7FFA29C318DC00C94F8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		85BE7FDF29C318DB00C94F8D = {
 			isa = PBXGroup;
 			children = (
-				85BE7FEA29C318DB00C94F8D /* shopDemo */,
+				85BE7FEA29C318DB00C94F8D /* DemoMVVM */,
 				85BE7FE929C318DB00C94F8D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,12 +94,12 @@
 		85BE7FE929C318DB00C94F8D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				85BE7FE829C318DB00C94F8D /* shopDemo.app */,
+				85BE7FE829C318DB00C94F8D /* DemoMVVM.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		85BE7FEA29C318DB00C94F8D /* shopDemo */ = {
+		85BE7FEA29C318DB00C94F8D /* DemoMVVM */ = {
 			isa = PBXGroup;
 			children = (
 				85BE800B29C31B6700C94F8D /* Coordinators */,
@@ -112,7 +112,7 @@
 				85BE800C29C31B9900C94F8D /* App */,
 				85BE800E29C31C8500C94F8D /* Resources */,
 			);
-			path = shopDemo;
+			path = DemoMVVM;
 			sourceTree = "<group>";
 		};
 		85BE800B29C31B6700C94F8D /* Coordinators */ = {
@@ -281,9 +281,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		85BE7FE729C318DB00C94F8D /* shopDemo */ = {
+		85BE7FE729C318DB00C94F8D /* DemoMVVM */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 85BE7FFF29C318DC00C94F8D /* Build configuration list for PBXNativeTarget "shopDemo" */;
+			buildConfigurationList = 85BE7FFF29C318DC00C94F8D /* Build configuration list for PBXNativeTarget "DemoMVVM" */;
 			buildPhases = (
 				85BE7FE429C318DB00C94F8D /* Sources */,
 				85BE7FE529C318DB00C94F8D /* Frameworks */,
@@ -293,13 +293,13 @@
 			);
 			dependencies = (
 			);
-			name = shopDemo;
+			name = DemoMVVM;
 			packageProductDependencies = (
 				85BE800329C3190700C94F8D /* Moya */,
 				85BE800629C3193E00C94F8D /* SnapKit */,
 			);
 			productName = shopDemo;
-			productReference = 85BE7FE829C318DB00C94F8D /* shopDemo.app */;
+			productReference = 85BE7FE829C318DB00C94F8D /* DemoMVVM.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -317,7 +317,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 85BE7FE329C318DB00C94F8D /* Build configuration list for PBXProject "shopDemo" */;
+			buildConfigurationList = 85BE7FE329C318DB00C94F8D /* Build configuration list for PBXProject "DemoMVVM" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -334,7 +334,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				85BE7FE729C318DB00C94F8D /* shopDemo */,
+				85BE7FE729C318DB00C94F8D /* DemoMVVM */,
 			);
 		};
 /* End PBXProject section */
@@ -521,7 +521,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 36SLD3SQ2W;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = shopDemo/Info.plist;
+				INFOPLIST_FILE = DemoMVVM/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To choose image from the photo library, you need to grant the permission in Settings.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -551,7 +551,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 36SLD3SQ2W;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = shopDemo/Info.plist;
+				INFOPLIST_FILE = DemoMVVM/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To choose image from the photo library, you need to grant the permission in Settings.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -575,7 +575,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		85BE7FE329C318DB00C94F8D /* Build configuration list for PBXProject "shopDemo" */ = {
+		85BE7FE329C318DB00C94F8D /* Build configuration list for PBXProject "DemoMVVM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				85BE7FFD29C318DC00C94F8D /* Debug */,
@@ -584,7 +584,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		85BE7FFF29C318DC00C94F8D /* Build configuration list for PBXNativeTarget "shopDemo" */ = {
+		85BE7FFF29C318DC00C94F8D /* Build configuration list for PBXNativeTarget "DemoMVVM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				85BE800029C318DC00C94F8D /* Debug */,
