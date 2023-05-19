@@ -8,13 +8,13 @@
 import SnapKit
 import UIKit
 
-final class ListNewsVC: UIViewController {
+final class ListNewsVC: BaseScreen {
     
     // MARK: - Public
     
     // MARK: External dependencies
 
-    var viewModel: ListNewsViewModelDelegat!
+    var viewModel: ListNewsViewModelDelegat?
     
     // MARK: - Private
 
@@ -35,7 +35,7 @@ final class ListNewsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel.fetchNews { [weak self] in
+        viewModel?.fetchNews { [weak self] in
             self?.setupTableView()
         }
         setupLayout()
@@ -52,8 +52,7 @@ final class ListNewsVC: UIViewController {
 private extension ListNewsVC {
     
     func setupView() {
-        navigationItem.title = viewModel.getTitle()
-        view.backgroundColor = .white
+        navigationItem.title = viewModel?.getTitle()
     }
     func setupLayout() {
         view.addSubview(table)
@@ -73,7 +72,7 @@ private extension ListNewsVC {
 extension ListNewsVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.numberOfRows()
+        viewModel?.numberOfRows() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,7 +80,7 @@ extension ListNewsVC: UITableViewDataSource {
             withIdentifier: ListNewsCell.identifier,
             for: indexPath
         ) as? ListNewsCell
-        let model = viewModel.cellViewModel(forIndexPath: indexPath)
+        let model = viewModel?.cellViewModel(forIndexPath: indexPath)
         cell?.setupCell(model: model)
         return cell ?? UITableViewCell()
     }
@@ -93,7 +92,7 @@ extension ListNewsVC: UITableViewDataSource {
 extension ListNewsVC: UITableViewDelegate {
 
     func tableView(_: UITableView, didSelectRowAt: IndexPath) {
-        viewModel.goToScreenFullNews(model: didSelectRowAt)
+        viewModel?.goToScreenFullNews(model: didSelectRowAt)
     }
 
 }

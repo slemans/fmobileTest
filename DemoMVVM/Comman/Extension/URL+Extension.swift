@@ -7,8 +7,6 @@
 
 import Foundation
 
-extension URL: ExpressibleByStringInterpolation {}
-
 extension URL: ExpressibleByStringLiteral {
     
     public init(stringLiteral value: String) {

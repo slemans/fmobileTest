@@ -35,5 +35,20 @@ final class NewsServiceTest: XCTestCase {
             }
         }
     }
+    
+    func testFetchImage() {
+        // Given
+        let urlImage = "http://dummyimage.com/156x100.png/5fa2dd/ffffff"
+        service.fetchImage(url: urlImage) { result in
+            switch result {
+            case .success(let image):
+                // Then
+                XCTAssertNotNil(image)
+            case .failure(let error):
+                // Then
+                XCTFail("Error =\(error)")
+            }
+        }
+    }
 
 }

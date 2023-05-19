@@ -9,16 +9,18 @@ import UIKit
 
 final class ListNewsCell: UITableViewCell {
     
+    private let servise: NewsServiceProtocol
+    
     private let titleLabel = UILabel()
         .decorated(with: .font(.sf(.body([.semibold]))))
         .decorated(with: .alignment(.left))
         .decorated(with: .multiline)
     private let imageNewsView = UIImageView()
-        .decorated(with: .backgroundColor(.gray))
     
     // MARK: - Initialization
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        self.servise = NewsService.shared
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupLayout()
@@ -30,9 +32,17 @@ final class ListNewsCell: UITableViewCell {
 
     // MARK: - Public functions
 
-    func setupCell(model: ListNewsViewModel.Model) {
+    func setupCell(model: ListNewsViewModel.Model?) {
+        guard let model else { return }
+        
         titleLabel.decorated(with: .text(model.name))
         fetchImage(url: model.image)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageNewsView.image = nil
+        imageNewsView.decorate(with: .backgroundColor(.gray))
     }
     
 }
@@ -57,18 +67,16 @@ private extension ListNewsCell {
     }
     
     func fetchImage(url: String) {
-        guard let urlImg = URL(string: url) else { return }
-        
-        URLSession.shared.dataTask(with: urlImg) { data, _, _ in
-            let queue = DispatchQueue.global(qos: .utility)
-            queue.async {
-                if let data = data, let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.imageNewsView.decorated(with: .image(image))
-                    }
+        servise.fetchImage(url: url) { [weak self] result in
+            switch result {
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self?.imageNewsView.decorated(with: .image(image))
                 }
+            case .failure:
+                self?.imageNewsView.decorate(with: .backgroundColor(.gray))
             }
-        }.resume()
+        }
     }
     
 }

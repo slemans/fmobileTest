@@ -84,6 +84,12 @@ final class ListNewsViewModelCoordinatorOutputSpy: ListNewsViewModelCoordinatorO
 
 }
 final class NewsServiceProtocolSpy: NewsServiceProtocol {
+    
+    func fetchImage(url: String, completion: @escaping CompletionHandler<UIImage?>) {
+        let image = UIImage()
+        completion(.success(image))
+    }
+    
 
     func getNews(completion: @escaping CompletionHandler<[DemoMVVM.ListNews]>) {
         let array = [ListNews(

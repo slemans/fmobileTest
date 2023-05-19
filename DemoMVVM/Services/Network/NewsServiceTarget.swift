@@ -10,12 +10,15 @@ import Moya
 
 enum NewsServiceTarget {
     case getNews
+    case getImage(url: String)
 }
 
 extension NewsServiceTarget: TargetType {
     
     var baseURL: URL {
         switch self {
+        case .getImage(let url):
+            return URL(stringLiteral: url)
         default:
             return URL(stringLiteral: "https://raw.githubusercontent.com/")
         }
@@ -25,6 +28,8 @@ extension NewsServiceTarget: TargetType {
         switch self {
         case .getNews:
             return "Lavrenkov/fake_data/main/news_mock.json"
+        default:
+            return .emptyLine
         }
     }
     

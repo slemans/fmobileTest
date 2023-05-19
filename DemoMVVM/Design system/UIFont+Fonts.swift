@@ -73,30 +73,6 @@ extension UIFont.Inscriptions {
 
 private extension UIFont {
     
-//    static func makeFont(using style: DesignSystemFont) -> UIFont {
-//        switch style {
-//        case .body(let inscriptions):
-//
-//            let fontType = style.fontType
-//
-//            var font: UIFont?
-//            switch style.fontType.weight {
-//            case .bold:
-//                font = UIFont(name: "Montserrat-Bold", size: fontType.size)
-//            case .semibold:
-//                font = UIFont(name: "Montserrat-SemiBold", size: fontType.size)
-//            default:
-//                font = UIFont(name: "Montserrat", size: fontType.size)
-//            }
-//
-//            guard let font else { return .systemFont(ofSize: fontType.size, weight: fontType.weight)}
-//
-//            return inscriptions?.contains(.italic) ?? false
-//            ? font.bold
-//                : font
-//        }
-//    }
-    
     static func makeFont(using style: DesignSystemFont) -> UIFont {
         switch style {
         case .body(let inscriptions):

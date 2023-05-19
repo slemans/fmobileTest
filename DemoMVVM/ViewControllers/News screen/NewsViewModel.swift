@@ -34,7 +34,8 @@ final class NewsViewModel {
 extension NewsViewModel: NewsViewModelInput {
     
     func getTitlePage() -> String {
-        makeDate()
+        guard let title = model?.date.string() else { return .emptyLine}
+        return title
     }
     func numberOfRows() -> Int {
         array.count
@@ -51,14 +52,6 @@ private extension NewsViewModel {
         
         array.append(Model.image(model.imageURL))
         array.append(Model.decription(model.description))
-    }
-    
-    func makeDate() -> String {
-        guard let title = model?.date else { return .emptyLine }
-        
-        let df = DateFormatter()
-        df.dateFormat = "dd-MM-yyyy mm:hh"
-        return df.string(from: title)
     }
     
 }

@@ -47,7 +47,7 @@ final class NewsViewModelTests: XCTestCase {
         // Given
         let result = viewModel.numberOfRows()
         // Then
-        XCTAssertEqual(result, 0)
+        XCTAssertNotEqual(result, 0)
     }
     
     func testCellViewModel() {

@@ -9,6 +9,8 @@ import UIKit
 
 final class NewsCell: UITableViewCell {
     
+    private let servise: NewsServiceProtocol
+    
     private lazy var image = UIImageView()
     private lazy var decription = UILabel()
         .decorated(with: .font(.sf(.body([.semibold]))))
@@ -18,6 +20,7 @@ final class NewsCell: UITableViewCell {
     // MARK: - Initialization
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        self.servise = NewsService.shared
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupCell()
@@ -29,8 +32,14 @@ final class NewsCell: UITableViewCell {
 
     // MARK: - Public functions
 
-    func setupCell(model: NewsViewModel.Model) {
+    func setupCell(model: NewsViewModel.Model?) {
         makeLayout(model: model)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        image.image = nil
+        image.decorate(with: .backgroundColor(.gray))
     }
     
 }
@@ -41,7 +50,9 @@ private extension NewsCell {
         selectionStyle = .none
     }
     
-    func makeLayout(model: NewsViewModel.Model) {
+    func makeLayout(model: NewsViewModel.Model?) {
+        guard let model else { return }
+        
         switch model {
         case .image(let url):
             fetchImage(url: url)
@@ -68,18 +79,16 @@ private extension NewsCell {
     }
     
     func fetchImage(url: String) {
-        guard let urlImg = URL(string: url) else { return }
-        
-        URLSession.shared.dataTask(with: urlImg) { data, _, _ in
-            let queue = DispatchQueue.global(qos: .utility)
-            queue.async {
-                if let data = data, let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.image.decorated(with: .image(image))
-                    }
+        servise.fetchImage(url: url) { [weak self] result in
+            switch result {
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self?.image.decorated(with: .image(image))
                 }
+            case .failure:
+                self?.image.decorate(with: .backgroundColor(.gray))
             }
-        }.resume()
+        }
     }
     
 }

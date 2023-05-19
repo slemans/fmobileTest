@@ -8,13 +8,13 @@
 import SnapKit
 import UIKit
 
-final class NewsVC: UIViewController {
+final class NewsVC: BaseScreen {
 
     // MARK: - Public
     
     // MARK: External dependencies
 
-    var viewModel: NewsViewModelInput!
+    var viewModel: NewsViewModelInput?
     
     // MARK: - Private
 
@@ -47,8 +47,7 @@ final class NewsVC: UIViewController {
 private extension NewsVC {
     
     func setupLayout() {
-        view.backgroundColor = .white
-        navigationItem.title = viewModel.getTitlePage()
+        navigationItem.title = viewModel?.getTitlePage()
         navigationController?.navigationBar.topItem?.title = .emptyLine
     }
     
@@ -67,7 +66,7 @@ private extension NewsVC {
 extension NewsVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.numberOfRows()
+        viewModel?.numberOfRows() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -75,7 +74,7 @@ extension NewsVC: UITableViewDataSource {
             withIdentifier: NewsCell.identifier,
             for: indexPath)
         as? NewsCell
-        let model = viewModel.cellViewModel(forIndexPath: indexPath)
+        let model = viewModel?.cellViewModel(forIndexPath: indexPath)
         cell?.setupCell(model: model)
         return cell ?? UITableViewCell()
     }

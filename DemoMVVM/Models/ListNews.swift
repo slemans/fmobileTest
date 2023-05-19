@@ -16,7 +16,7 @@ struct ListNews {
     let imageURL: String
     let id: Int
     var date: Date {
-        makeDate(createAt)
+        createAt.makeDate()
     }
     
     // MARK: Private
@@ -49,15 +49,4 @@ extension ListNews: Codable {
         self.imageURL = try container.decode(String.self, forKey: .imageURL)
         self.createAt = try container.decode(String.self, forKey: .createAt)
     }
-}
-
-private extension ListNews {
-    
-    func makeDate(_ createAt: String) -> Date {
-        guard let number = Int(createAt) else { return Date() }
-
-        let time = TimeInterval(number / 1000)
-        return Date(timeIntervalSince1970: time)
-    }
-    
 }
