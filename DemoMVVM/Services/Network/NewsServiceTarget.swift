@@ -9,9 +9,7 @@ import UIKit
 import Moya
 
 enum NewsServiceTarget {
-
     case getNews
-
 }
 
 extension NewsServiceTarget: TargetType {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1430"
-   version = "1.7">
+   version = "2.2">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -9,16 +9,11 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "85BE7FE729C318DB00C94F8D"
-               BuildableName = "DemoMVVM.app"
-               BlueprintName = "DemoMVVM"
-               ReferencedContainer = "container:DemoMVVM.xcodeproj">
-            </BuildableReference>
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <AutocreatedTestPlanReference>
+            </AutocreatedTestPlanReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
@@ -34,20 +29,9 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "85EEB4B62A166AFA00017990"
-               BuildableName = "UnitTests.xctest"
-               BlueprintName = "UnitTests"
-               ReferencedContainer = "container:DemoMVVM.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "85EEB4C32A166B7900017990"
-               BuildableName = "shopDemoTests.xctest"
-               BlueprintName = "shopDemoTests"
+               BlueprintIdentifier = "85EEB4D02A166CE900017990"
+               BuildableName = "DemoMVVMTests.xctest"
+               BlueprintName = "DemoMVVMTests"
                ReferencedContainer = "container:DemoMVVM.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -63,16 +47,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "85BE7FE729C318DB00C94F8D"
-            BuildableName = "DemoMVVM.app"
-            BlueprintName = "DemoMVVM"
-            ReferencedContainer = "container:DemoMVVM.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -80,16 +54,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "85BE7FE729C318DB00C94F8D"
-            BuildableName = "DemoMVVM.app"
-            BlueprintName = "DemoMVVM"
+            BlueprintIdentifier = "85EEB4D02A166CE900017990"
+            BuildableName = "DemoMVVMTests.xctest"
+            BlueprintName = "DemoMVVMTests"
             ReferencedContainer = "container:DemoMVVM.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
