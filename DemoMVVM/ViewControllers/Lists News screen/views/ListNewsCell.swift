@@ -9,7 +9,9 @@ import UIKit
 
 final class ListNewsCell: UITableViewCell {
     
-    private let servise: NewsServiceProtocol
+    // MARK: External dependencies
+    
+    private let serviсe: NewsServiceProtocol
     
     private let titleLabel = UILabel()
         .decorated(with: .font(.sf(.body([.semibold]))))
@@ -20,7 +22,7 @@ final class ListNewsCell: UITableViewCell {
     // MARK: - Initialization
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        self.servise = NewsService.shared
+        self.serviсe = NewsService.shared
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupLayout()
@@ -67,7 +69,7 @@ private extension ListNewsCell {
     }
     
     func fetchImage(url: String) {
-        servise.fetchImage(url: url) { [weak self] result in
+        serviсe.fetchImage(url: url) { [weak self] result in
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {

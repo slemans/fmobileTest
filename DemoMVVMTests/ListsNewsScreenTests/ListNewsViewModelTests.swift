@@ -10,96 +10,67 @@ import XCTest
 
 final class ListNewsViewModelTests: XCTestCase {
 
-    private var viewModel: ListNewsViewModel!
-    private var output: ListNewsViewModelCoordinatorOutputSpy!
-    private var servise: NewsServiceProtocol!
+    private var sut: ListNewsViewModel!
+    private var cordinator: ListNewsViewModelCoordinatorOutputSpy!
+    private var networkService: NewsServiceProtocol!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        self.output = ListNewsViewModelCoordinatorOutputSpy()
-        self.servise = NewsServiceProtocolSpy()
-        self.viewModel = ListNewsViewModel(output: output, servise: servise)
+        self.cordinator = ListNewsViewModelCoordinatorOutputSpy()
+        self.networkService = NewsServiceProtocolSpy()
+        self.sut = ListNewsViewModel(output: cordinator, servise: networkService)
     }
 
     override func tearDownWithError() throws {
-        output = nil
-        servise = nil
-        viewModel = nil
+        cordinator = nil
+        networkService = nil
+        sut = nil
         try super.tearDownWithError()
     }
 
-    func testGetTitle() {
+    func test_getTitle() {
         // Given
         func getTitle() -> String {
-            viewModel.getTitle()
+            sut.getTitle()
         }
         // When
         let result = getTitle()
         // Then
         XCTAssertNotNil(result)
     }
-    func testGoToScreenFullNews() {
+    func test_goToScreenFullNews() {
         // Given
         let index = IndexPath(item: 0, section: 0)
         func goToScreenFullNews(model: IndexPath) {
-            viewModel.goToScreenFullNews(model: model)
+            sut.goToScreenFullNews(model: model)
         }
         // When
         goToScreenFullNews(model: index)
         // Then
-        XCTAssertNotNil(output.count)
+        XCTAssertNotNil(cordinator.count)
     }
-    func testFetchNews() {
+    func test_fetchNews() {
         // Given
         var resultWork: Bool = false
-        viewModel.fetchNews {
+        sut.fetchNews {
             resultWork = true
         }
         // Then
         XCTAssert(resultWork)
     }
-    func testReturnSortArray() {
+    func test_returnSortArray() {
         // Given
         let model = [ListNews]()
-        let result = viewModel.returnSortArray(model)
+        let result = sut.returnSortArray(model)
         // Then
         XCTAssertNotNil(result)
     }
 
-    func testNumberOfRows() {
+    func test_numberOfRows() {
         // Given
-        let result = viewModel.numberOfRows()
+        let result = sut.numberOfRows()
         // Then
         XCTAssertEqual(result, 0)
-    }
-
-}
-
-final class ListNewsViewModelCoordinatorOutputSpy: ListNewsViewModelCoordinatorOutput {
-
-    var count: Int?
-    func goToFullNews(_ news: DemoMVVM.ListNews?) {
-        count = 1
-    }
-
-}
-final class NewsServiceProtocolSpy: NewsServiceProtocol {
-    
-    func fetchImage(url: String, completion: @escaping CompletionHandler<UIImage?>) {
-        let image = UIImage()
-        completion(.success(image))
-    }
-    
-
-    func getNews(completion: @escaping CompletionHandler<[DemoMVVM.ListNews]>) {
-        let array = [ListNews(
-            title: "Demo",
-            description: "Demo",
-            imageURL: "http://dummyimage.com/156x100.png/5fa2dd/ffffff",
-            id: 1,
-            createAt: "1647249381000"
-        )]
-        completion(.success(array))
     }
 
 }

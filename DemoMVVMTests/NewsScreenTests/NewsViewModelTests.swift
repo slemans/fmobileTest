@@ -10,12 +10,10 @@ import XCTest
 
 final class NewsViewModelTests: XCTestCase {
     
-    private var viewModel: NewsViewModel!
-    private var output: NewsViewModelCoordinatorOutputSpy!
+    private var sut: NewsViewModel!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        self.output = NewsViewModelCoordinatorOutputSpy()
         let listNews = ListNews(
             title: "Demo",
             description: "Demo",
@@ -23,19 +21,18 @@ final class NewsViewModelTests: XCTestCase {
             id: 1,
             createAt: "1647249381000"
         )
-        self.viewModel = NewsViewModel(output: output, model: listNews)
+        self.sut = NewsViewModel(model: listNews)
     }
 
     override func tearDownWithError() throws {
-        output = nil
-        viewModel = nil
+        sut = nil
         try super.tearDownWithError()
     }
 
-    func testGetTitlePage() {
+    func test_get_titlePage() {
         // Given
         func getTitle() -> String {
-            viewModel.getTitlePage()
+            sut.getTitlePage()
         }
         // When
         let result = getTitle()
@@ -43,21 +40,19 @@ final class NewsViewModelTests: XCTestCase {
         XCTAssertNotNil(result)
     }
     
-    func testNumberOfRows() {
+    func test_numberOfRows() {
         // Given
-        let result = viewModel.numberOfRows()
+        let result = sut.numberOfRows()
         // Then
         XCTAssertNotEqual(result, 0)
     }
     
-    func testCellViewModel() {
+    func test_cellViewModel() {
         // Given
         let index = IndexPath(item: 0, section: 0)
-        let result = viewModel.cellViewModel(forIndexPath: index)
+        let result = sut.cellViewModel(forIndexPath: index)
         // Then
         XCTAssertNotNil(result)
     }
 
 }
-
-final class NewsViewModelCoordinatorOutputSpy: NewsViewModelOutput { }

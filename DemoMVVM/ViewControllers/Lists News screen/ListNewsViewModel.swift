@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ListNewsViewModelDelegat {
+protocol ListNewsViewModelInput {
     
     func goToScreenFullNews(model: IndexPath)
     func numberOfRows() -> Int
@@ -35,7 +35,7 @@ final class ListNewsViewModel {
 
 }
 
-extension ListNewsViewModel: ListNewsViewModelDelegat {
+extension ListNewsViewModel: ListNewsViewModelInput {
     
     func getTitle() -> String {
         Constants.titlePage

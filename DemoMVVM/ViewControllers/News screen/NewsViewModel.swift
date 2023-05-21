@@ -17,14 +17,12 @@ protocol NewsViewModelInput {
 
 final class NewsViewModel {
 
-    private var output: NewsViewModelOutput?
     private var array: [Model] = []
     private let model: ListNews?
 
     // MARK: - Initialization
 
-    init(output: NewsViewModelOutput, model: ListNews?) {
-        self.output = output
+    init(model: ListNews?) {
         self.model = model
         makeArrayModel()
     }
@@ -45,6 +43,7 @@ extension NewsViewModel: NewsViewModelInput {
     }
     
 }
+
 private extension NewsViewModel {
     
     func makeArrayModel() {

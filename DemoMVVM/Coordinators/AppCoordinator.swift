@@ -10,6 +10,7 @@ import UIKit
 class AppCoordinator: Coordinator {
 
     // MARK: - Properties
+    
     var window: UIWindow
     var coordinators = [String: Coordinator]()
 
@@ -22,7 +23,9 @@ class AppCoordinator: Coordinator {
     }
 }
 
-extension AppCoordinator: ListNewsCoordinatorOutput {
+extension AppCoordinator: ListNewsCoordinatorOutput { }
+
+private extension AppCoordinator {
     
     func showListsNewsPage() {
         let listNewsCoordinator = ListNewsCoordinator(window: window)

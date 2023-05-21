@@ -23,7 +23,7 @@ final class AppCoordinatorTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func testStart() {
+    func test_start() {
         // Given
         func start() {
             sut.start()
@@ -31,17 +31,7 @@ final class AppCoordinatorTests: XCTestCase {
         // When
         start()
         // Then
-        XCTAssertNotEqual(sut.coordinators.count, 0)
-    }
-
-    func testShowListsNewsPage() {
-        // Given
-        func showListsNewsPage() {
-            sut.showListsNewsPage()
-        }
-        // When
-        showListsNewsPage()
-        // Then
+        XCTAssertNotNil(sut.coordinators["ListsNews"])
         XCTAssertNotEqual(sut.coordinators.count, 0)
     }
 

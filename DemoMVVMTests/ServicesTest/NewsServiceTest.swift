@@ -10,21 +10,21 @@ import XCTest
 
 final class NewsServiceTest: XCTestCase {
     
-    private var service: NewsService!
+    private var sut: NewsService!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        self.service = NewsService.shared
+        self.sut = NewsService.shared
     }
 
     override func tearDownWithError() throws {
-        service = nil
+        sut = nil
         try super.tearDownWithError()
     }
 
-    func testGetNews() {
+    func test_get_news() {
         // Given
-        service.getNews { result in
+        sut.getNews { result in
             switch result {
             case .success(let array):
                 // Then
@@ -36,10 +36,10 @@ final class NewsServiceTest: XCTestCase {
         }
     }
     
-    func testFetchImage() {
+    func test_fetch_image() {
         // Given
         let urlImage = "http://dummyimage.com/156x100.png/5fa2dd/ffffff"
-        service.fetchImage(url: urlImage) { result in
+        sut.fetchImage(url: urlImage) { result in
             switch result {
             case .success(let image):
                 // Then

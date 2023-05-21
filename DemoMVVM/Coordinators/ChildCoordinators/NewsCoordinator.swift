@@ -9,7 +9,7 @@ import UIKit
 
 protocol NewsViewModelOutput: AnyObject { }
 
-class NewsCoordinator: Coordinator {
+final class NewsCoordinator: Coordinator {
 
     // MARK: - Properties
 
@@ -22,9 +22,7 @@ class NewsCoordinator: Coordinator {
     
     func start() {
         let newsVc = NewsVC()
-        let viewModel = NewsViewModel(
-            output: self,
-            model: news)
+        let viewModel = NewsViewModel(model: news)
         newsVc.viewModel = viewModel
         screen = newsVc
     }
@@ -36,5 +34,3 @@ class NewsCoordinator: Coordinator {
     }
 
 }
-
-extension NewsCoordinator: NewsViewModelOutput {}

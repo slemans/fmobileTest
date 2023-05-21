@@ -9,35 +9,22 @@ import SnapKit
 import UIKit
 
 final class NewsVC: BaseScreen {
-
-    // MARK: - Public
     
     // MARK: External dependencies
 
     var viewModel: NewsViewModelInput?
-    
-    // MARK: - Private
 
     // MARK: UI
     
-    private lazy var table: UITableView = {
-        let tableView = UITableView(frame: .zero)
-        tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.identifier)
-        tableView.dataSource = self
-        tableView.separatorInset = UIEdgeInsets(top: .zero, left: .zero, bottom: .zero, right: .zero)
-        tableView.separatorStyle = .none
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 300
-        return tableView
-    }()
+    private var table = UITableView()
     
     // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupLayout()
         setupView()
+        setupLayout()
     }
 
 }
@@ -46,17 +33,28 @@ final class NewsVC: BaseScreen {
 
 private extension NewsVC {
     
-    func setupLayout() {
+    func setupView() {
         navigationItem.title = viewModel?.getTitlePage()
         navigationController?.navigationBar.topItem?.title = .emptyLine
+        table = makeTableView()
     }
-    
-    func setupView() {
+    func setupLayout() {
         view.addSubview(table)
         table.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.bottom.equalToSuperview()
         }
+    }
+    
+    func makeTableView() -> UITableView {
+        let tableView = UITableView(frame: .zero)
+        tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.identifier)
+        tableView.dataSource = self
+        tableView.separatorInset = UIEdgeInsets(top: .zero, left: .zero, bottom: .zero, right: .zero)
+        tableView.separatorStyle = .none
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 300
+        return tableView
     }
 
 }

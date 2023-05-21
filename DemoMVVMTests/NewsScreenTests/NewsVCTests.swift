@@ -10,38 +10,38 @@ import XCTest
 
 final class NewsVCTests: XCTestCase {
     
-    private var screen: NewsVC!
+    private var sut: NewsVC!
     private var viewModel: NewsViewModelSpy!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        self.screen = NewsVC()
+        self.sut = NewsVC()
         self.viewModel = NewsViewModelSpy()
-        screen.viewModel = viewModel
+        sut.viewModel = viewModel
     }
 
     override func tearDownWithError() throws {
-        screen = nil
+        sut = nil
         viewModel = nil
         try super.tearDownWithError()
     }
     
-    func testViewDidLoad() {
+    func test_view_didLoad() {
         // Given
         func viewDidLoad() {
-            screen.viewDidLoad()
+            sut.viewDidLoad()
         }
         // When
         viewDidLoad()
         // Then
-        XCTAssertEqual(viewModel.getTitlePage() , screen.navigationItem.title)
+        XCTAssertEqual(viewModel.getTitlePage() , sut.navigationItem.title)
     }
     
-    func testtableViewNumberOfRowsInSection() {
+    func test_tableView_numberOfRowsInSection() {
         // Given
         let table = UITableView()
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            screen.tableView(tableView, numberOfRowsInSection: section)
+            sut.tableView(tableView, numberOfRowsInSection: section)
         }
         // When
         let result = tableView(table, numberOfRowsInSection: 0)
@@ -49,7 +49,7 @@ final class NewsVCTests: XCTestCase {
         XCTAssertEqual(result, viewModel.array.count)
     }
     
-    func testTableViewCellForRowAt() {
+    func test_tableView_cellForRowAt() {
         // Given
         let table: UITableView = {
             let tableView = UITableView(frame: .zero)
@@ -58,7 +58,7 @@ final class NewsVCTests: XCTestCase {
         }()
         let index = IndexPath(item: 0, section: 0)
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            screen.tableView(tableView, cellForRowAt: indexPath)
+            sut.tableView(tableView, cellForRowAt: indexPath)
         }
         // When
         let result = tableView(table, cellForRowAt: index)
@@ -66,25 +66,4 @@ final class NewsVCTests: XCTestCase {
         XCTAssertNotNil(result)
     }
 
-}
-
-final class NewsViewModelSpy: NewsViewModelInput {
-    
-    var array: [NewsViewModel.Model] = [
-        NewsViewModel.Model.decription("Description")
-    ]
-    let title =  "Title"
-    
-    func numberOfRows() -> Int {
-        array.count
-    }
-    
-    func cellViewModel(forIndexPath indexPath: IndexPath) -> DemoMVVM.NewsViewModel.Model {
-        array[indexPath.row]
-    }
-    
-    func getTitlePage() -> String {
-        title
-    }
-    
 }

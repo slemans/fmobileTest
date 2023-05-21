@@ -10,31 +10,20 @@ import UIKit
 
 final class ListNewsVC: BaseScreen {
     
-    // MARK: - Public
-    
     // MARK: External dependencies
 
-    var viewModel: ListNewsViewModelDelegat?
-    
-    // MARK: - Private
+    var viewModel: ListNewsViewModelInput?
 
     // MARK: UI
     
-    private lazy var table: UITableView = {
-        let tableView = UITableView(frame: .zero)
-        tableView.register(ListNewsCell.self, forCellReuseIdentifier: ListNewsCell.identifier)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.separatorInset = UIEdgeInsets(top: .zero, left: .zero, bottom: .zero, right: .zero)
-        tableView.separatorStyle = .singleLine
-        return tableView
-    }()
+    private var table = UITableView()
     
     // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        settingTableView()
         viewModel?.fetchNews { [weak self] in
             self?.setupTableView()
         }
@@ -63,6 +52,18 @@ private extension ListNewsVC {
     }
     func setupTableView() {
         table.reloadData()
+    }
+    func settingTableView() {
+        table = makeTableView()
+    }
+    func makeTableView() -> UITableView {
+        let tableView = UITableView(frame: .zero)
+        tableView.register(ListNewsCell.self, forCellReuseIdentifier: ListNewsCell.identifier)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorInset = UIEdgeInsets(top: .zero, left: .zero, bottom: .zero, right: .zero)
+        tableView.separatorStyle = .singleLine
+        return tableView
     }
     
 }

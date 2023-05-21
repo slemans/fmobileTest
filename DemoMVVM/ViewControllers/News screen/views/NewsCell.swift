@@ -9,7 +9,9 @@ import UIKit
 
 final class NewsCell: UITableViewCell {
     
-    private let servise: NewsServiceProtocol
+    // MARK: External dependencies
+    
+    private var servise: NewsServiceProtocol
     
     private lazy var image = UIImageView()
     private lazy var decription = UILabel()

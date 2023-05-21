@@ -10,24 +10,24 @@ import XCTest
 
 final class NewsCellTests: XCTestCase {
     
-    private var cell: NewsCell!
+    private var sut: NewsCell!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        self.cell = NewsCell()
+        self.sut = NewsCell()
     }
 
     override func tearDownWithError() throws {
-        cell = nil
+        sut = nil
         try super.tearDownWithError()
     }
     
-    func testSetupCell() {
+    func test_setupCell() {
         // Given
         let model = NewsViewModel.Model.decription(.emptyLine)
         var resultWork: Bool = false
         func setupCell(model: NewsViewModel.Model) {
-            cell.setupCell(model: model)
+            sut.setupCell(model: model)
             resultWork = true
         }
         // When

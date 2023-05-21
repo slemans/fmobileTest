@@ -9,7 +9,7 @@ import XCTest
 @testable import DemoMVVM
 
 final class ListNewsCoordinatorTests: XCTestCase {
-    
+
     private var sut: ListNewsCoordinator!
     private var window: WindowSpy!
 
@@ -24,8 +24,8 @@ final class ListNewsCoordinatorTests: XCTestCase {
         window = nil
         try super.tearDownWithError()
     }
-    
-    func testStart() {
+
+    func test_start() {
         // Given
         func start() {
             sut.start()
@@ -35,8 +35,8 @@ final class ListNewsCoordinatorTests: XCTestCase {
         // Then
         XCTAssertNotNil(window.rootViewController)
     }
-    
-    func testGoToFullNews() {
+
+    func test_go_to_fullNews() {
         // Given
         let news = ListNews(
             title: "Demo",
@@ -45,17 +45,20 @@ final class ListNewsCoordinatorTests: XCTestCase {
             id: 1,
             createAt: "1647249381000"
         )
-        var resultWork: Bool = false
         func goToFullNews(_ news: ListNews?) {
+            sut.start()
             sut.goToFullNews(news)
-            resultWork = true
         }
         // When
         goToFullNews(news)
-        // Then
-        XCTAssert(resultWork)
+
+        guard let navigationController = window.rootViewController as? UINavigationController else { return }
+        
+        RunLoop.current.run(until: Date())
+        guard let _ = navigationController.topViewController as? NewsVC else {
+            XCTFail()
+            return
+        }
     }
 
 }
-
-final class WindowSpy: UIWindow {}

@@ -11,6 +11,7 @@ import XCTest
 final class NewsCoordinatorTests: XCTestCase {
     
     private var sut: NewsCoordinator!
+    private var window: WindowSpy!
 
     override func setUpWithError() throws {
         let listNews = ListNews(
@@ -20,36 +21,45 @@ final class NewsCoordinatorTests: XCTestCase {
             id: 1,
             createAt: "1647249381000"
         )
+        self.window = WindowSpy()
         self.sut = NewsCoordinator(news: listNews)
     }
 
     override func tearDownWithError() throws {
         sut = nil
+        window = nil
         try super.tearDownWithError()
     }
     
-    func testStart() {
+    func test_Start() {
         // Given
-        var resultWork: Bool = false
         func start() {
             sut.start()
-            resultWork = true
         }
         // When
         start()
+        RunLoop.current.run(until: Date())
         // Then
-        XCTAssert(resultWork)
+        guard let _ = sut.makeScreen() as? NewsVC else {
+            XCTFail()
+            return
+        }
     }
     
-    func testMakeScreen() {
+    func test_make_screen() {
         // Given
+        sut.start()
         func makeScreen() -> UIViewController {
             sut.makeScreen()
         }
         // When
         let result = makeScreen()
         // Then
-        XCTAssertNotNil(result)
+        RunLoop.current.run(until: Date())
+        guard let _ = result as? NewsVC else {
+            XCTFail()
+            return
+        }
     }
 
 }
